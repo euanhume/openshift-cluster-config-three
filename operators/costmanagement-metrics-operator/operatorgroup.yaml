@@ -4,4 +4,6 @@ metadata:
   name: costmanagement-metrics-operator
   namespace: costmanagement-metrics-operator
 spec:
+  targetNamespaces:
+  - costmanagement-metrics-operator
   upgradeStrategy: Default 
