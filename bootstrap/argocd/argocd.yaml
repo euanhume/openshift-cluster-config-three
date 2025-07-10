@@ -4,7 +4,8 @@ metadata:
   name: openshift-gitops
   namespace: openshift-gitops
 spec:
-  applicationset: {}
+  applicationSet:
+    enabled: true
   server:
     route:
       enabled: true
@@ -12,3 +13,11 @@ spec:
         insecureEdgeTerminationPolicy: Redirect
         termination: reencrypt
       wildcardPolicy: None
+  sso:
+    provider: dex
+    dex:
+      openShiftOAuth: true
+  rbac:
+    defaultPolicy: 'role:readonly'
+    policy: 'g, cluster-admins, role:admin'
+    scopes: '[groups]'

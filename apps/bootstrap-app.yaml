@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: operators-bootstrap
+  namespace: openshift-gitops
+spec:
+  project: operators
+  source:
+    repoURL: https://github.com/euanhume/openshift-cluster-config-three
+    targetRevision: HEAD
+    path: apps/operators
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: openshift-gitops
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true 
