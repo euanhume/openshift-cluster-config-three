@@ -1,0 +1,1 @@
+until oc apply -k bootstrap/; do sleep 2; done
