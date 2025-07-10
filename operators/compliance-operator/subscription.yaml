@@ -8,4 +8,7 @@ spec:
   installPlanApproval: Automatic
   name: compliance-operator
   source: redhat-operators
-  sourceNamespace: openshift-marketplace 
+  sourceNamespace: openshift-marketplace
+  config:
+    nodeSelector:
+      node-role.kubernetes.io/worker: "" 
