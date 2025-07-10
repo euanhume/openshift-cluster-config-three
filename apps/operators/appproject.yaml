@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: operators
+  namespace: openshift-gitops
+spec:
+  description: Project for managing operators
+  sourceRepos:
+  - 'https://github.com/euanhume/openshift-cluster-config-three'
+  destinations:
+  - namespace: '*'
+    server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+  - group: ''
+    kind: Namespace
+  - group: operators.coreos.com
+    kind: OperatorGroup
+  - group: operators.coreos.com
+    kind: Subscription
+  - group: operators.coreos.com
+    kind: InstallPlan
+  - group: operators.coreos.com
+    kind: ClusterServiceVersion
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+  namespaceResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  roles:
+  - name: admin
+    groups:
+    - system:cluster-admins 
